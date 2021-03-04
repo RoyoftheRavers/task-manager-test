@@ -1,5 +1,5 @@
 import os
-from flask import (
+from flask import(
     Flask, flash, render_template,
     redirect, request, session, url_for)
 from flask_pymongo import PyMongo
@@ -11,7 +11,7 @@ if os.path.exists("env.py"):
 
 app = Flask(__name__)
 
-app.config["MONGO_DBAME"] = os.environ.get("MONGO_DBNAME")
+app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
 
@@ -46,6 +46,7 @@ def register():
         session["user"] = request.form.get("username").lower()
         flash("Registration Successful!")
         return redirect((url_for("profile", username=session["user"])))
+
     return render_template("register.html")
 
 
